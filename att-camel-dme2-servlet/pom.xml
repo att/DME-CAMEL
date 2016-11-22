@@ -14,11 +14,14 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.att.camel</groupId>
-		<artifactId>ajsc-camel-components-parent</artifactId>
-		<version>2.15.5-SNAPSHOT</version>
-		<relativePath>../parent/pom.xml</relativePath>
+		<groupId>org.apache.camel</groupId>
+		<artifactId>components</artifactId>
+		<version>2.15.5</version>
+		<relativePath></relativePath> <!-- inserting empty path avoids issue of injected super dir -->
 	</parent>
+
+
+
 
 	<groupId>com.att.camel</groupId>
 	<artifactId>att-camel-dme2-servlet</artifactId>
@@ -27,6 +30,7 @@
 	<description>ATT Camel HTTP  support</description>
 
 	<properties>
+		<dme2.version>3.1.200-SNAPSHOT</dme2.version>
 		<!-- Now we move to the 4.2 -->
 		<camel.osgi.import.before.defaults>
 			org.apache.http.*;version="[4.2,5)"
@@ -40,9 +44,8 @@
 		<ch.qos.logback.version>1.0.0</ch.qos.logback.version>
 	</properties>
 
-
-
 	<dependencies>
+
 
 		<dependency>
 			<groupId>org.apache.camel</groupId>
@@ -55,7 +58,12 @@
 			<version>${camel.version}</version>
 		</dependency>
 		
-
+		<dependency>
+          <groupId>org.apache.camel</groupId>
+          <artifactId>apt</artifactId>
+          <version>2.15.5</version>
+        </dependency>
+		
 		<dependency>
 			<groupId>org.apache.camel</groupId>
 			<artifactId>camel-http</artifactId>
@@ -183,7 +191,30 @@
 				<version>2.3.7</version>
 				<extensions>true</extensions>
 			</plugin>
+			<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-gpg-plugin</artifactId>
+			<version>1.5</version>
+			<executions>
+				<execution>
+					<id>sign-artifacts</id>
+					<phase>verify</phase>
+					<goals>
+						<goal>sign</goal>
+					</goals>
+				</execution>
+	    </executions>
+	  </plugin> 			
 		</plugins>
 	</build>
-
+<distributionManagement>
+    <snapshotRepository>
+      <id>ossrhajsc</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrhajsc</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
 </project>

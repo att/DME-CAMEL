@@ -1,8 +1,0 @@
-# comments begin with a '#'
-# the format is <mime type> <space separated file extensions>
-text/html html
-application/json json
-text/xml xml
-text/css css
-image/jpeg jpg
-text/plain txt
