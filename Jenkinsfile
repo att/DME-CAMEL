@@ -16,7 +16,7 @@ node {
     // Run the maven build
     //sh for unix bat for windows
    
-    sh "${mvnHome}/bin/mvn -f att-camel-dme2-servlet/pom.xml clean deploy"
+    sh "${mvnHome}/bin/mvn -f ajsc5-camel-components-master/pom.xml clean deploy"
     
     
 }
